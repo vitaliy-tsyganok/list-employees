@@ -1,7 +1,6 @@
-import { Container } from '@shared/layouts/Container';
-import { Main } from '@shared/layouts/Main';
-import { Sidebar } from '@shared/layouts/Sidebar';
+import { Container, Main, Sidebar } from './layouts';
 import './index.css';
+
 
 function App() {
   return (
