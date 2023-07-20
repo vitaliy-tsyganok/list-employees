@@ -16,6 +16,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    
     'no-restricted-imports': ['error', { 'patterns': ['@*/*/*'] }],
+    'react/prop-types': ['none'],
   },
 };
