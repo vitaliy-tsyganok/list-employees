@@ -5,7 +5,7 @@ import { EmployeesFilter } from '@widgets/employees-filter';
 import { EmployeesList } from '@widgets/employees-list';
 import './index.css';
 
-function App() {
+export function App() {
   return (
     <Container>
       <Main>
@@ -20,5 +20,3 @@ function App() {
     </Container>
   );
 }
-
-export default App;
