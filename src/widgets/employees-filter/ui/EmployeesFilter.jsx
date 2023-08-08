@@ -6,8 +6,8 @@ export function EmployeesFilter() {
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(235px,_1fr))] gap-5">
           <fieldset className="space-y-2">
             <legend className="font-medium">Гражданство</legend>
-            <select name="nationality" id="nationality">
-              <option value="" selected>
+            <select name="countries" id="countries" defaultValue="all">
+              <option value="all">
                 Все страны
               </option>
               <option value="RU">Россия</option>
@@ -16,8 +16,8 @@ export function EmployeesFilter() {
           </fieldset>
           <fieldset className="space-y-2">
             <legend className="font-medium">Пол</legend>
-            <select name="sex" id="sex">
-              <option value="" selected>
+            <select name="sex" id="sex" defaultValue="all">
+              <option value="all">
                 Без разницы
               </option>
               <option value="man">Мужской</option>
@@ -27,8 +27,8 @@ export function EmployeesFilter() {
         </div>
         <fieldset className="space-y-2">
           <legend className="font-medium">Должность</legend>
-          <select name="held-post" id="held-post">
-            <option value="" selected>
+          <select name="held-post" id="held-post" defaultValue="all">
+            <option value="all">
               Все должности
             </option>
             <option value="director">Руководитель</option>
