@@ -1,24 +1,29 @@
-/* eslint-env node */
-
 module.exports = {
+  root: true,
   env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: true,
+    tsconfigRootDir: __dirname,
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
 
-    'no-restricted-imports': ['error', { 'patterns': ['@*/*/*'] }],
-    'react/prop-types': ['off'],
+    // 'no-restricted-imports': ['error', { 'patterns': ['@*/*/*'] }],
+    // 'react/prop-types': ['off'],
   },
 };

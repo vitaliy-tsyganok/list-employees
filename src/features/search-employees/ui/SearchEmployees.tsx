@@ -1,4 +1,4 @@
-export function SearchEmployees() {
+export function SearchEmployees(){
   return (
     <div className="border-b border-b-light-3 px-4 pb-4 pt-8 lg:pb-2">
       <label className="relative">
