@@ -2,7 +2,7 @@ import { AddEmployee } from '@features/add-employee';
 import { SearchEmployees } from '@features/search-employees';
 import { Container, Main, Sidebar } from '@pages/layouts';
 import { EmployeesFilter } from '@widgets/employees-filter';
-import { EmployeesList } from '@widgets/employees-list';
+import { EmployeeCardList } from '@widgets/employees-list';
 import './index.css';
 
 export function App() {
@@ -10,7 +10,7 @@ export function App() {
     <Container>
       <Main>
         <SearchEmployees />
-        <EmployeesList />
+        <EmployeeCardList />
       </Main>
 
       <Sidebar>
