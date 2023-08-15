@@ -1,6 +1,6 @@
-import { employee } from '../types/employee'
+import { Employee } from '../types/employee'
 
-export const employeeList: employee[] =
+export const employeesData: Employee[] =
 [
   {
     "firstName": "Александр",

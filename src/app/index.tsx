@@ -1,8 +1,8 @@
 import { AddEmployee } from '@features/add-employee';
 import { SearchEmployees } from '@features/search-employees';
 import { Container, Main, Sidebar } from '@pages/layouts';
-import { EmployeesFilter } from '@widgets/employees-filter';
-import { EmployeeCardList } from '@widgets/employees-list';
+import { EmployeeList } from '@widgets/employee-list';
+import { EmployeesAdvancedFilter } from '@widgets/employes-advanced-filter';
 import './index.css';
 
 export function App() {
@@ -10,12 +10,12 @@ export function App() {
     <Container>
       <Main>
         <SearchEmployees />
-        <EmployeeCardList />
+        <EmployeeList />
       </Main>
 
       <Sidebar>
         <AddEmployee />
-        <EmployeesFilter />
+        <EmployeesAdvancedFilter />
       </Sidebar>
     </Container>
   );

@@ -1,4 +1,4 @@
-export function EmployeesFilter() {
+export function EmployeesAdvancedFilter() {
   return (
     <section className="px-4 py-8">
       <form className="space-y-4 text-[15px]">
