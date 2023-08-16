@@ -1,6 +1,6 @@
-import { Employee } from '../../model/types/employee';
+import { employee } from '../../types/employee';
 
-export function EmployeeCard(employee: Employee) {
+export function EmployeeCard(employee: employee) {
   const {
     firstName,
     lastName,
@@ -56,15 +56,13 @@ export function EmployeeCard(employee: Employee) {
         </div>
       </div>
       <div>
-        <span className={'rounded ' + bgColor + ' px-2 py-1 text-white'}>
-          {status}
-        </span>
+        <span className={'rounded ' + bgColor + ' px-2 py-1 text-white'}>{status}</span>
       </div>
     </article>
   );
 }
 
-function getBgColor(status: Employee['status']) {
+function getBgColor(status: employee['status']) {
   switch (status) {
     case 'Истекают все документы': {
       return 'bg-red';
@@ -82,4 +80,4 @@ function getBgColor(status: Employee['status']) {
       return 'bg-green';
     }
   }
-}  
+}
