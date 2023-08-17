@@ -2,6 +2,7 @@ import { employee } from '../types/employee';
 
 export const employeesData: employee[] = [
   {
+    'id': '1',
     'firstName': 'Александр',
     'lastName': 'Иванов',
     'middleName': 'Александрович',
@@ -17,6 +18,7 @@ export const employeesData: employee[] = [
     'status': 'Истекает патент',
   },
   {
+    'id': '2',
     'firstName': 'Екатерина',
     'lastName': 'Смирнова',
     'middleName': 'Андреевна',
@@ -32,6 +34,7 @@ export const employeesData: employee[] = [
     'status': 'Истекают все документы',
   },
   {
+    'id': '3',
     'firstName': 'Дмитрий',
     'lastName': 'Попов',
     'middleName': 'Игоревич',
@@ -47,6 +50,7 @@ export const employeesData: employee[] = [
     'status': 'Пропустил медосмотр',
   },
   {
+    'id': '4',
     'firstName': 'Ольга',
     'lastName': 'Кузнецова',
     'middleName': 'Владимировна',
@@ -62,6 +66,7 @@ export const employeesData: employee[] = [
     'status': 'Истекают все документы',
   },
   {
+    'id': '5',
     'firstName': 'Иван',
     'lastName': 'Соколов',
     'middleName': 'Иванович',
@@ -77,6 +82,7 @@ export const employeesData: employee[] = [
     'status': 'Прошел все процедуры',
   },
   {
+    'id': '6',
     'firstName': 'Мария',
     'lastName': 'Волкова',
     'middleName': 'Александровна',
@@ -92,6 +98,7 @@ export const employeesData: employee[] = [
     'status': 'Истекает патент',
   },
   {
+    'id': '7',
     'firstName': 'Алексей',
     'lastName': 'Ковалев',
     'middleName': 'Анатольевич',
@@ -107,6 +114,7 @@ export const employeesData: employee[] = [
     'status': 'Истекают все документы',
   },
   {
+    'id': '8',
     'firstName': 'Анна',
     'lastName': 'Петрова',
     'middleName': 'Дмитриевна',
@@ -122,6 +130,7 @@ export const employeesData: employee[] = [
     'status': 'Пропустил медосмотр',
   },
   {
+    'id': '9',
     'firstName': 'Сергей',
     'lastName': 'Смирнов',
     'middleName': 'Павлович',
@@ -137,6 +146,7 @@ export const employeesData: employee[] = [
     'status': 'Прошел все процедуры',
   },
   {
+    'id': '10',
     'firstName': 'Елена',
     'lastName': 'Петрова',
     'middleName': 'Александровна',
@@ -152,6 +162,7 @@ export const employeesData: employee[] = [
     'status': 'Пропустил медосмотр',
   },
   {
+    'id': '11',
     'firstName': 'Иван',
     'lastName': 'Смирнов',
     'middleName': 'Дмитриевич',
@@ -167,6 +178,7 @@ export const employeesData: employee[] = [
     'status': 'Истекает патент',
   },
   {
+    'id': '12',
     'firstName': 'Ольга',
     'lastName': 'Васильева',
     'middleName': 'Александровна',
@@ -182,6 +194,7 @@ export const employeesData: employee[] = [
     'status': 'Прошел все процедуры',
   },
   {
+    'id': '13',
     'firstName': 'Алексей',
     'lastName': 'Козлов',
     'middleName': 'Иванович',
@@ -197,6 +210,7 @@ export const employeesData: employee[] = [
     'status': 'Истекает патент',
   },
   {
+    'id': '14',
     'firstName': 'Анна',
     'lastName': 'Смирнова',
     'middleName': 'Алексеевна',
@@ -212,6 +226,7 @@ export const employeesData: employee[] = [
     'status': 'Истекает патент',
   },
   {
+    'id': '15',
     'firstName': 'John',
     'lastName': 'Smith',
     'middleName': 'Michael',

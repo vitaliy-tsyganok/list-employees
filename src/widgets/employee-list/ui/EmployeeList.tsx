@@ -7,22 +7,28 @@ const countVisibleEmployeesInitial: number = 5;
 const activeFilterInitial: filterByStatusName = 'Весь список';
 
 export function EmployeeList() {
-  const employeesDataRef = useRef(employeesData)
-  const employees = employeesDataRef.current
+  const employeesDataRef = useRef(employeesData);
+  const employees = employeesDataRef.current;
 
   const [countVisibleEmployees, setCountVisibleEmployees] = useState(
     countVisibleEmployeesInitial,
   );
   const [activeFilter, setActiveFilter] = useState(activeFilterInitial);
 
-  const visibleEmployees = useMemo(
-    () => getVisibleEmployees(employees, countVisibleEmployees, activeFilter),
-    [employees, countVisibleEmployees, activeFilter],
+  const filteredEmployees = useMemo(
+    () => getFilteredEmployees(employees, activeFilter),
+    [employees, activeFilter],
   );
-  const isEmployeesUnvisible = countVisibleEmployees < employees.length;
+
+  const visibleEmployees = useMemo(
+    () => getVisibleEmployees(filteredEmployees, countVisibleEmployees),
+    [filteredEmployees, countVisibleEmployees],
+  );
+  const isEmployeesUnvisible = countVisibleEmployees < filteredEmployees.length;
 
   function changeFilter(name: filterByStatusName) {
     setActiveFilter(name);
+    setCountVisibleEmployees(countVisibleEmployeesInitial)
   }
 
   function showMoreEmployees(count: number) {
@@ -39,7 +45,7 @@ export function EmployeeList() {
       {/* <!-- Карточки сотрудников --> */}
       <div className="space-y-4">
         {visibleEmployees.map((employee) => {
-          return <EmployeeCard {...employee} />;
+          return <EmployeeCard key={employee.id} {...employee} />;
         })}
 
         <ShowMoreEmployeesButton
@@ -52,28 +58,34 @@ export function EmployeeList() {
 }
 
 function getVisibleEmployees(
-  employees: employee[],
+  filteredEmployees: employee[],
   countVisibleEmployees: number,
+): employee[] {
+  return filteredEmployees.slice(0, countVisibleEmployees);
+}
+
+function getFilteredEmployees(
+  employees: employee[],
   activeFilter: filterByStatusName,
 ): employee[] {
   switch (activeFilter) {
     case 'Весь список': {
-      return employees.slice(0, countVisibleEmployees);
+      return employees.slice();
     }
     case 'Проблемные': {
-      return employees.filter(({status}) => status === 'Истекает патент')
+      return employees.filter(({ status }) => status === 'Истекает патент');
     }
     case 'Критические': {
-      return employees.filter(({status}) => status === 'Истекают все документы')
+      return employees.filter(({ status }) => status === 'Истекают все документы');
     }
     case 'Есть замечания': {
-      return employees.filter(({status}) => status === 'Пропустил медосмотр')
+      return employees.filter(({ status }) => status === 'Пропустил медосмотр');
     }
     case 'Выполнено': {
-      return employees.filter(({status}) => status === 'Прошел все процедуры')
+      return employees.filter(({ status }) => status === 'Прошел все процедуры');
     }
     default: {
-      return employees.slice(0, countVisibleEmployees);
+      return employees.slice();
     }
   }
 }

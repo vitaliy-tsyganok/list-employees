@@ -17,7 +17,7 @@ export function FilterByStatusList({
     <div className="-mx-4 my-5 overflow-hidden">
       <div className="flex snap-x snap-mandatory scroll-px-4 gap-2 overflow-x-auto whitespace-nowrap px-4 py-1 md:flex-wrap">
         {filters.map(({ name, isActive }) => (
-          <FilterByStatusButton name={name} isActive={isActive} onClick={changeFilter} />
+          <FilterByStatusButton key={name} name={name} isActive={isActive} onClick={changeFilter} />
         ))}
       </div>
     </div>
