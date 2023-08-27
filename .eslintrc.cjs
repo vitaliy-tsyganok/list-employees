@@ -10,8 +10,8 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: true,
-    tsconfigRootDir: __dirname,
+    project: 'tsconfig.json',
+    // tsconfigRootDir: __dirname,
     ecmaVersion: 'latest',
     sourceType: 'module',
   },

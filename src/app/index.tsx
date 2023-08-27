@@ -1,22 +1,16 @@
-import { AddEmployee } from '@features/add-employee';
-import { SearchEmployees } from '@features/search-employees';
-import { Container, Main, Sidebar } from '@pages/layouts';
-import { EmployeeList } from '@widgets/employee-list';
-import { EmployeesAdvancedFilter } from '@widgets/employes-advanced-filter';
-import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { App } from './App';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
-export function App() {
-  return (
-    <Container>
-      <Main>
-        <SearchEmployees />
-        <EmployeeList />
-      </Main>
+const rootElement = document.getElementById('root') as HTMLElement;
 
-      <Sidebar>
-        <AddEmployee />
-        <EmployeesAdvancedFilter />
-      </Sidebar>
-    </Container>
-  );
-}
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+);
