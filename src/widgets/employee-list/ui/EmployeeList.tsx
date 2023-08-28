@@ -1,6 +1,6 @@
 import { EmployeeCard, employee, useGetEmployeesQuery } from '@entities/employee';
-import { FilterByStatusList, filterByStatusName } from '@features/filter-by-status';
-import { ShowMoreEmployeesButton } from '@features/show-more-employees';
+import { FilterByStatusList, filterByStatusName } from '@features/employee/filter-by/status';
+import { ShowMoreEmployeesButton } from '@features/employee/show-more';
 import { useMemo, useState } from 'react';
 
 const countVisibleEmployeesInitial: number = 5;

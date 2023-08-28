@@ -6,8 +6,8 @@ declare global {
    * and use it in @shared/model/hooks.ts
    */
 
-  declare type RootState = import('../src/app/redux/store').RootState;
-  declare type AppDispatch = import('../src/app/redux/store').AppDispatch;
+  declare type RootState = import('../src/app/store').RootState;
+  declare type AppDispatch = import('../src/app/store').AppDispatch;
 }
 
 export {};
