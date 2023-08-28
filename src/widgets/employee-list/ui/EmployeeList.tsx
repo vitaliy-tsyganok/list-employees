@@ -1,14 +1,13 @@
-import { EmployeeCard, employeesData, employee } from '@entities/employee';
+import { EmployeeCard, employee, useGetEmployeesQuery } from '@entities/employee';
 import { FilterByStatusList, filterByStatusName } from '@features/filter-by-status';
 import { ShowMoreEmployeesButton } from '@features/show-more-employees';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const countVisibleEmployeesInitial: number = 5;
 const activeFilterInitial: filterByStatusName = 'Весь список';
 
 export function EmployeeList() {
-  const employeesDataRef = useRef(employeesData);
-  const employees = employeesDataRef.current;
+  const { data: employees, isLoading } = useGetEmployeesQuery();
 
   const [countVisibleEmployees, setCountVisibleEmployees] = useState(
     countVisibleEmployeesInitial,
@@ -28,7 +27,7 @@ export function EmployeeList() {
 
   function changeFilter(name: filterByStatusName) {
     setActiveFilter(name);
-    setCountVisibleEmployees(countVisibleEmployeesInitial)
+    setCountVisibleEmployees(countVisibleEmployeesInitial);
   }
 
   function showMoreEmployees(count: number) {
@@ -43,16 +42,20 @@ export function EmployeeList() {
       <FilterByStatusList activeFilter={activeFilter} changeFilter={changeFilter} />
 
       {/* <!-- Карточки сотрудников --> */}
-      <div className="space-y-4">
-        {visibleEmployees.map((employee) => {
-          return <EmployeeCard key={employee.id} {...employee} />;
-        })}
+      {isLoading ? (
+        <h1 className="text-2xl font-semibold">Загрузка...</h1>
+      ) : (
+        <div className="space-y-4">
+          {visibleEmployees.map((employee) => {
+            return <EmployeeCard key={employee.id} {...employee} />;
+          })}
 
-        <ShowMoreEmployeesButton
-          showMoreEmployees={showMoreEmployees}
-          isEmployeesUnvisible={isEmployeesUnvisible}
-        />
-      </div>
+          <ShowMoreEmployeesButton
+            showMoreEmployees={showMoreEmployees}
+            isEmployeesUnvisible={isEmployeesUnvisible}
+          />
+        </div>
+      )}
     </div>
   );
 }
@@ -65,9 +68,12 @@ function getVisibleEmployees(
 }
 
 function getFilteredEmployees(
-  employees: employee[],
+  employees: employee[] | undefined,
   activeFilter: filterByStatusName,
-): employee[] {
+): employee[] | [] {
+  if (employees === undefined) {
+    return [];
+  }
   switch (activeFilter) {
     case 'Весь список': {
       return employees.slice();

@@ -1,4 +1,5 @@
-import { employee } from '../../types/employee';
+import { getBackgroundColorByStatus } from '../../lib/getBackgroundColorByStatus';
+import { employee } from '../../model/types';
 
 export function EmployeeCard(employee: employee) {
   const {
@@ -17,7 +18,7 @@ export function EmployeeCard(employee: employee) {
     status,
   } = employee;
 
-  const bgColor = getBgColor(status);
+  const bgColor = getBackgroundColorByStatus(status);
 
   return (
     <article className="flex flex-col gap-4 whitespace-nowrap rounded bg-light-grey p-5 text-sm text-black">
@@ -60,24 +61,4 @@ export function EmployeeCard(employee: employee) {
       </div>
     </article>
   );
-}
-
-function getBgColor(status: employee['status']) {
-  switch (status) {
-    case 'Истекают все документы': {
-      return 'bg-red';
-    }
-    case 'Истекает патент': {
-      return 'bg-gold';
-    }
-    case 'Пропустил медосмотр': {
-      return 'bg-light-blue';
-    }
-    case 'Прошел все процедуры': {
-      return 'bg-green';
-    }
-    default: {
-      return 'bg-green';
-    }
-  }
 }

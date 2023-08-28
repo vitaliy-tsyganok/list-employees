@@ -1,3 +1,3 @@
 export { EmployeeCard } from './ui/employee-card/EmployeeCard';
-export { employeesData } from './mock/employees-data';
-export type { employee } from './types/employee';
+export { useGetEmployeesQuery } from './api/employeeApi';
+export { type employee } from './model/types';
