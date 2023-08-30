@@ -1,7 +1,7 @@
 import { getBackgroundColorByStatus } from '../../lib/getBackgroundColorByStatus';
-import { employee } from '../../model/types';
+import { Employee } from '../../model/types';
 
-export function EmployeeCard(employee: employee) {
+export function EmployeeCard(employee: Employee) {
   const {
     firstName,
     lastName,

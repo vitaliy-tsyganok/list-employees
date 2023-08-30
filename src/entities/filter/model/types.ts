@@ -1,9 +1,4 @@
-export interface filterByStatus {
-  name: filterByStatusName;
-  isActive: boolean;
-}
-
-export type filterByStatusName =
+export type FiltersByStatusNames =
   | 'Весь список'
   | 'Проблемные'
   | 'Критические'

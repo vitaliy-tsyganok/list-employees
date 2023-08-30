@@ -1,25 +1,26 @@
-export interface employee {
+export type Employee = {
   id: string;
   firstName: string;
   lastName: string;
   middleName: string;
   taxID: string;
-  contractType: contractType;
+  contractType: ContractType;
   position: string;
-  nationality: nationalityType;
+  nationality: Nationality;
   passport: string;
-  gender: genderType;
+  gender: Gender;
   city: string;
   dateOfBirth: string;
   age: string;
-  status: statusType;
+  status: Status;
 }
 
-type contractType = 'ТД' | 'ГПХ' | 'СМЗ' | 'Кандидат';
-type nationalityType = 'RU' | 'USA';
-type genderType = 'мужской' | 'женский';
-type statusType =
+export type ContractType = 'ТД' | 'ГПХ' | 'СМЗ' | 'Кандидат';
+export type Nationality = 'RU' | 'USA';
+export type Gender = 'мужской' | 'женский';
+export type Status =
   | 'Истекают все документы'
   | 'Истекает патент'
   | 'Пропустил медосмотр'
   | 'Прошел все процедуры';
+

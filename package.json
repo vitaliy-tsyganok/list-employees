@@ -9,8 +9,9 @@
     "build": "tsc && vite build",
     "server": "json-server --watch server/db.json --port 3004",
     "preview": "vite preview",
-    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
-    "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix"
+    "lint": "eslint src \"**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "lint:types": "tsc --noEmit"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",

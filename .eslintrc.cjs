@@ -11,7 +11,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    // tsconfigRootDir: __dirname,
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
@@ -19,7 +18,6 @@ module.exports = {
   plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
     // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-
     // 'no-restricted-imports': ['error', { 'patterns': ['@*/*/*'] }],
     // 'react/prop-types': ['off'],
   },

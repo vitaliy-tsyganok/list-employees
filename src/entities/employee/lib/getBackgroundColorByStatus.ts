@@ -1,12 +1,14 @@
-import { employee } from '../model/types';
+import { Employee } from '../model/types';
 
-const hash = {
+type bgColorsVariantsForStatus = 'bg-red' | 'bg-gold' | 'bg-light-blue' | 'bg-green';
+
+const hash: Record<Employee['status'], bgColorsVariantsForStatus> = {
   'Истекают все документы': 'bg-red',
   'Истекает патент': 'bg-gold',
   'Пропустил медосмотр': 'bg-light-blue',
   'Прошел все процедуры': 'bg-gold',
 };
 
-export function getBackgroundColorByStatus(status: employee['status']) {
+export function getBackgroundColorByStatus(status: Employee['status']) {
   return hash[status];
 }
