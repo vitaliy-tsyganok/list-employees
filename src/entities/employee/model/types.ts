@@ -13,7 +13,7 @@ export type Employee = {
   dateOfBirth: string;
   age: string;
   status: Status;
-}
+};
 
 export type ContractType = 'ТД' | 'ГПХ' | 'СМЗ' | 'Кандидат';
 export type Nationality = 'RU' | 'USA';
@@ -24,3 +24,8 @@ export type Status =
   | 'Пропустил медосмотр'
   | 'Прошел все процедуры';
 
+export type EmployeeQueryParams = {
+  _limit: number;
+  status: Employee['status'][];
+  q?: string;
+};

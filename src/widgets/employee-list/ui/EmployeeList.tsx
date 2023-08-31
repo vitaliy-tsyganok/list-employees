@@ -1,20 +1,41 @@
-import { EmployeeCard, Employee, useEmployeesQuery } from '@entities/employee';
-import { FilterByStatusList, ShowMoreEmployeesButton } from '@features/employee';
+import {
+  EmployeeCard,
+  Employee,
+  useEmployeesQuery,
+  EmployeeQueryParams,
+} from '@entities/employee';
+import {
+  // filtersActions,
+  FiltersByStatusNames,
+  FiltersSliceState,
+} from '@entities/filter';
+import { ShowMoreEmployeesButton } from '@features/employee/show-more';
+import { FilterByStatusList } from '@features/filter/status';
+import { useAppSelector } from '@shared/libs/redux';
 import { useState } from 'react';
 
-const countVisibleEmployeesInitial: number = 5;
+const visibleEmployeesCountInitial: number = 5; // Число отображаемых сотрудников
+const showMoreEmployeesCount: number = 5; // Число подгружаемых сотрудников по клике на кнопку "Показать еще"
 
 export function EmployeeList() {
-  const [countVisibleEmployees, setCountVisibleEmployees] = useState(
-    countVisibleEmployeesInitial,
+  const [visibleEmployeesCount, setCountVisibleEmployees] = useState(
+    visibleEmployeesCountInitial,
   );
-  const limit = countVisibleEmployees + 1;
-  const { data: employees = [], isLoading } = useEmployeesQuery({ _limit: limit });
+  // const limit = visibleEmployeesCount + 1;
+  // const allFilters = useAllFilters()
+  // const queryParams = getQueryParams(allFilters, visibleEmployeesCount)
+  const filters = useAppSelector((store) => store.filters);
+  const queryParams = getQueryParams(filters, visibleEmployeesCount);
+  const {
+    data: employees = [],
+    isLoading,
+    isFetching,
+  } = useEmployeesQuery(queryParams);
 
   let isEmployeesUnvisible = false;
 
   if (employees.length) {
-    isEmployeesUnvisible = employees.length > countVisibleEmployees;
+    isEmployeesUnvisible = employees.length > visibleEmployeesCount;
   }
 
   let visibleEmployees: Employee[] = [];
@@ -25,31 +46,62 @@ export function EmployeeList() {
     visibleEmployees = employees.slice();
   }
 
-  function showMoreEmployees(count: number) {
-    if (isEmployeesUnvisible) {
-      setCountVisibleEmployees((c) => c + count);
-    }
-  }
-  return (
-    <div className="px-4 py-8">
-      <h1 className="text-2xl font-semibold">Список сотрудников</h1>
+  let employeeRendered;
 
-      <FilterByStatusList />
-
-      {isLoading ? (
+  switch (true) {
+    case isLoading: {
+      employeeRendered = (
         <h1 className="text-center text-2xl font-semibold">Загрузка...</h1>
-      ) : (
-        <div className="space-y-4">
+      );
+      break;
+    }
+    default: {
+      employeeRendered = (
+        <div className={`space-y-4 ${isFetching ? ' opacity-25' : ''}`}>
           {visibleEmployees.map((employee) => {
             return <EmployeeCard key={employee.id} {...employee} />;
           })}
-
           <ShowMoreEmployeesButton
-            showMoreEmployees={showMoreEmployees}
+            setCountVisibleEmployees={setCountVisibleEmployees}
             isEmployeesUnvisible={isEmployeesUnvisible}
+            showMoreEmployeesCount={showMoreEmployeesCount}
           />
         </div>
-      )}
+      );
+    }
+  }
+
+  return (
+    <div className="px-4 py-8">
+      <h1 className="text-2xl font-semibold">Список сотрудников</h1>
+      <FilterByStatusList />
+      {employeeRendered}
     </div>
   );
+}
+
+const hash: Record<FiltersByStatusNames, Employee['status'][]> = {
+  'Весь список': [],
+  'Проблемные': ['Истекает патент'],
+  'Критические': ['Истекают все документы'],
+  'Есть замечания': ['Пропустил медосмотр'],
+  'Выполнено': ['Прошел все процедуры'],
+};
+
+function getEmployeeStatusesByFilterName(
+  filter: FiltersByStatusNames,
+): Employee['status'][] {
+  return hash[filter];
+}
+
+function getQueryParams(
+  filters: FiltersSliceState,
+  visibleEmployeesCount: number,
+): EmployeeQueryParams {
+  const queryParams: EmployeeQueryParams = {
+    _limit: visibleEmployeesCount + 1,
+    status: getEmployeeStatusesByFilterName(filters.status.name),
+  };
+
+  return queryParams;
 }

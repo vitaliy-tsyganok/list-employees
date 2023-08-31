@@ -6,7 +6,7 @@ const hash: Record<Employee['status'], bgColorsVariantsForStatus> = {
   'Истекают все документы': 'bg-red',
   'Истекает патент': 'bg-gold',
   'Пропустил медосмотр': 'bg-light-blue',
-  'Прошел все процедуры': 'bg-gold',
+  'Прошел все процедуры': 'bg-green',
 };
 
 export function getBackgroundColorByStatus(status: Employee['status']) {

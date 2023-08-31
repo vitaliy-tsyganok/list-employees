@@ -1,20 +1,12 @@
 import { baseApi } from '@shared/api';
-import type { Employee } from '../model/types';
-
-interface EmployeeQueryParams {
-  q?: string;
-  _limit?: number;
-  _status?: Employee['status'];
-}
+import type { Employee, EmployeeQueryParams } from '../model/types';
 
 export const employeeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     employees: builder.query<Employee[], EmployeeQueryParams>({
-      query: (queryParams = {}) => ({
+      query: (queryParams) => ({
         url: '/employees',
-        params: {
-          ...queryParams,
-        },
+        params: queryParams,
       }),
     }),
   }),
