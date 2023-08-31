@@ -1,5 +1,5 @@
-import { getBackgroundColorByStatus } from '../../lib/getBackgroundColorByStatus';
-import { Employee } from '../../model/types';
+import { getBackgroundColorByStatus } from '../lib/getBackgroundColorByStatus';
+import { Employee } from '../model/types';
 
 export function EmployeeCard(employee: Employee) {
   const {
@@ -62,3 +62,4 @@ export function EmployeeCard(employee: Employee) {
     </article>
   );
 }
+

@@ -1,1 +1,1 @@
-export { FilterByStatusList } from './ui/filter-by-status-list/FilterByStatusList';
+export { FilterByStatusList } from './ui/FilterByStatusList';

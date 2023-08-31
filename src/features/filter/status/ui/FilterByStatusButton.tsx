@@ -1,7 +1,7 @@
 import { filtersActions, FiltersByStatusNames, useStatusFilter } from '@entities/filter';
 import { useAppDispatch } from '@shared/libs/redux';
-import { getClassName } from '../../lib/getClassName';
-import { getColorVariant } from '../../lib/getColorVariant';
+import { getClassName } from '../lib/getClassName';
+import { getColorVariant } from '../lib/getColorVariant';
 
 type FilterByStatusButtonProps = {
   name: FiltersByStatusNames;

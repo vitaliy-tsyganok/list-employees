@@ -1,4 +1,5 @@
-import { ArrowPathIcon } from '@shared/icons';
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
+
 
 interface showMoreEmployeesButtonProps {
   isEmployeesUnvisible: boolean;
