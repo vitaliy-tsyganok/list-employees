@@ -13,7 +13,9 @@ export function EmployeeList() {
     visibleEmployeesCountInitial,
   );
   const filters = useAppSelector((store) => store.filters);
+  console.log('filters', filters)
   const queryParams = getQueryParams(filters, visibleEmployeesCount);
+  console.log('queryParams', queryParams)
   const { data: employees = [], isLoading, isFetching } = useEmployeesQuery(queryParams);
 
   let isEmployeesUnvisible = false;

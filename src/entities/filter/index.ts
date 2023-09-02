@@ -1,3 +1,2 @@
-export { filtersReducer, filtersActions } from './model/filterSlice';
+export { filtersReducer, filtersActions, filtersSelectors } from './model/filterSlice';
 export type { FiltersByStatusNames, FiltersSliceState } from './model/types';
-export { useStatusFilter } from './model/hooks';

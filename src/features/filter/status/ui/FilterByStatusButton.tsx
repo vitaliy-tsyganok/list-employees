@@ -1,23 +1,28 @@
-import { filtersActions, FiltersByStatusNames, useStatusFilter } from '@entities/filter';
-import { useAppDispatch } from '@shared/libs/redux';
+import { filtersActions, FiltersByStatusNames } from '@entities/filter';
+import { useAppDispatch, useAppSelector } from '@shared/libs/redux';
 import { getClassName } from '../lib/getClassName';
 import { getColorVariant } from '../lib/getColorVariant';
 
 type FilterByStatusButtonProps = {
-  name: FiltersByStatusNames;
+  id: FiltersByStatusNames;
 };
 
-export function FilterByStatusButton({ name }: FilterByStatusButtonProps) {
+export function FilterByStatusButton({ id: name }: FilterByStatusButtonProps) {
   const dispatch = useAppDispatch();
-  const activeFilter = useStatusFilter();
 
-  const isActive = activeFilter === name;
+  const activeFilterName = useAppSelector((store) => store.filters.status.active);
+  const visibleItems = useAppSelector(
+    (store) => store.filters.status.entities[name].visibleItems,
+  );
+  
+  const isActive = activeFilterName === name;
   const colorVariant = getColorVariant(name);
-
   const className = getClassName(colorVariant, isActive);
 
   function onSetStatusFilter() {
-    dispatch(filtersActions.setStatusFilter({ name }));
+    if (!isActive) {
+      dispatch(filtersActions.setStatusFilter({ name, visibleItems }));
+    }
   }
 
   return (

@@ -1,3 +1,15 @@
+export type FiltersSliceState = {
+  status: StatusFilter;
+  search: SearchFilter;
+  // TODO: advanced
+};
+
+export type StatusFilter = {
+  ids: FiltersByStatusNames[];
+  entities: Record<FiltersByStatusNames, StatusFilterEntity>;
+  active: FiltersByStatusNames;
+};
+
 export type FiltersByStatusNames =
   | 'Весь список'
   | 'Проблемные'
@@ -5,8 +17,9 @@ export type FiltersByStatusNames =
   | 'Есть замечания'
   | 'Выполнено';
 
-export type StatusFilter = {
+export type StatusFilterEntity = {
   name: FiltersByStatusNames;
+  visibleItems: number;
 };
 
 export type SearchFilter = {
@@ -14,9 +27,3 @@ export type SearchFilter = {
 };
 
 // TODO: AdvancedFilter
-
-export type FiltersSliceState = {
-  status: StatusFilter;
-  search: SearchFilter;
-  // TODO: advanced
-};

@@ -21,7 +21,9 @@ export function getQueryParams(
 ): EmployeeQueryParams {
   const queryParams: EmployeeQueryParams = {
     _limit: visibleEmployeesCount + 1,
-    status: getEmployeeStatusesByFilterName(filters.status.name),
+    status: getEmployeeStatusesByFilterName(
+      filters.status.active,
+    ),
     q: filters.search.query,
   };
 
