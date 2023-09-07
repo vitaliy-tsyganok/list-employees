@@ -1,5 +1,5 @@
 export type Employee = {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   middleName: string;
@@ -26,6 +26,7 @@ export type Status =
 
 export type EmployeeQueryParams = {
   _limit: number;
-  status: Employee['status'][];
+  _page: number;
+  status?: Status[] | undefined;
   q?: string;
 };

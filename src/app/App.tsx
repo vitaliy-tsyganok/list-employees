@@ -1,5 +1,5 @@
 import { MainPage } from '@pages/main';
-import '@shared/ui/main.css';
+import '@shared/main.css';
 
 export function App() {
   return <MainPage />;

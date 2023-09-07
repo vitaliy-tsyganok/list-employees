@@ -3,7 +3,7 @@ import { EmployeeList } from '@widgets/employee-list';
 import { SearchEmployees } from '@features/filter/search';
 import { EmployeesAdvancedFilter } from '@widgets/employes-advanced-filter';
 import { Container, Main, Sidebar } from '@widgets/layouts';
-import '@shared/ui/main.css';
+import '@shared/main.css';
 
 export function MainPage() {
   return (

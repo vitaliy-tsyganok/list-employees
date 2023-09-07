@@ -7,5 +7,6 @@ export const baseApi = createApi({
     baseUrl: 'http://localhost:3004',
     paramsSerializer: queryString.stringify,
   }),
+  tagTypes: ['Employees'],
   endpoints: () => ({}),
 });

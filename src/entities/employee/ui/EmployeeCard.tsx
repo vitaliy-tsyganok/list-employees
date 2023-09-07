@@ -1,7 +1,42 @@
 import { getBackgroundColorByStatus } from '../lib/getBackgroundColorByStatus';
 import { Employee } from '../model/types';
 
-export function EmployeeCard(employee: Employee) {
+type EmployeeCardProps = {
+  employee: Employee;
+  // id: Employee['id'];
+  // queryParams: EmployeeQueryParams;
+};
+
+export function EmployeeCard({ employee }: EmployeeCardProps) {
+  // const selectEmployeeById = useMemo(() => {
+  //   const emptyArray: Employee[] = [];
+  //   // Return a unique selector instance for this page so that
+  //   // the filtered results are correctly memoized
+  //   const selectEmployeesEntities = (res?: EntityState<Employee>) => res?.entities;
+  //   const selectEmployeeId = (_res: unknown, id: Employee['id']) => id;
+  //   return createSelector(
+  //     [selectEmployeesEntities, selectEmployeeId],
+  //     (entities, employeeId) => (entities ? entities[employeeId] : emptyArray),
+  //   );
+  // }, []);
+
+  // // Use the same posts query, but extract only part of its data
+  // const { employee } = useEmployeesByQuery(queryParams, {
+  //   selectFromResult: (result) => ({
+  //     employee: selectEmployeeById(result.data, id),
+  //   }),
+  // });
+
+  // const { data } = useEmployeeById(id);
+
+  // const employee = data
+
+  // if (!employee) return null;
+
+  // if (!employee || Array.isArray(employee)) {
+  //   return null
+  // }
+
   const {
     firstName,
     lastName,
@@ -62,4 +97,3 @@ export function EmployeeCard(employee: Employee) {
     </article>
   );
 }
-

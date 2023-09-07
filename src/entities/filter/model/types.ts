@@ -5,9 +5,11 @@ export type FiltersSliceState = {
 };
 
 export type StatusFilter = {
+  activeName: FiltersByStatusNames;
+  limit: number; // количество сотрудников на одной странице / число загружаемых сотрудников за раз
+  // activeCountVisible: StatusFilterEntity['countVisible'];
   ids: FiltersByStatusNames[];
   entities: Record<FiltersByStatusNames, StatusFilterEntity>;
-  active: FiltersByStatusNames;
 };
 
 export type FiltersByStatusNames =
@@ -19,11 +21,13 @@ export type FiltersByStatusNames =
 
 export type StatusFilterEntity = {
   name: FiltersByStatusNames;
-  visibleItems: number;
+  // limit: number; // число загружаемых сотрудников за раз
+  page: number; // номер текущей страницы
+  isHasShowMore: boolean; // есть ли еще сотрудники для загрузки
 };
 
 export type SearchFilter = {
-  query: string;
+  query: string; // строка запроса
 };
 
 // TODO: AdvancedFilter

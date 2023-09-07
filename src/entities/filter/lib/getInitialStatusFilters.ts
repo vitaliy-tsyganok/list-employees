@@ -1,30 +1,46 @@
-import { StatusFilter } from '../model/types';
+import { FiltersByStatusNames, StatusFilter, StatusFilterEntity } from '../model/types';
 
-export function getInitialStatusFilters(visibleItems: number = 5): StatusFilter {
+const filtersNames: FiltersByStatusNames[] = [
+  'Весь список',
+  'Проблемные',
+  'Критические',
+  'Есть замечания',
+  'Выполнено',
+];
+const page = 1;
+const limit = 5;
+const isHasShowMore = true;
+
+export function getInitialStatusFilterEntity(
+  name: FiltersByStatusNames,
+): StatusFilterEntity {
   return {
-    active: 'Весь список',
-    ids: ['Весь список', 'Проблемные', 'Критические', 'Есть замечания', 'Выполнено'],
-    entities: {
-      'Весь список': {
-        name: 'Весь список',
-        visibleItems,
-      },
-      'Проблемные': {
-        name: 'Проблемные',
-        visibleItems,
-      },
-      'Критические': {
-        name: 'Критические',
-        visibleItems,
-      },
-      'Есть замечания': {
-        name: 'Есть замечания',
-        visibleItems,
-      },
-      'Выполнено': {
-        name: 'Выполнено',
-        visibleItems,
-      },
-    },
+    name,
+    page,
+    isHasShowMore,
+  };
+}
+
+function getInitialStatusFiltersEntities(
+  filtersNames: FiltersByStatusNames[],
+): Record<FiltersByStatusNames, StatusFilterEntity> {
+  const initialStatusFiltersEntities = {} as Record<
+    FiltersByStatusNames,
+    StatusFilterEntity
+  >;
+
+  filtersNames.forEach((name) => {
+    initialStatusFiltersEntities[name] = getInitialStatusFilterEntity(name);
+  });
+
+  return initialStatusFiltersEntities;
+}
+
+export function getInitialStatusFilters(): StatusFilter {
+  return {
+    activeName: 'Весь список',
+    ids: filtersNames,
+    limit,
+    entities: getInitialStatusFiltersEntities(filtersNames),
   };
 }

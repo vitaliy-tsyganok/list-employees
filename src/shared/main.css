@@ -39,7 +39,7 @@
   }
 
   [type='checkbox'] {
-    @apply h-5 w-5 cursor-pointer rounded border-light-gold text-light-blue checked:border-light-blue focus:ring-0 focus:ring-offset-0 focus-visible:ring-light-blue focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply h-5 w-5 cursor-pointer rounded border-light-gold text-light-blue checked:border-light-blue focus:ring-0 focus:ring-offset-0 focus-visible:ring-2 focus-visible:ring-light-blue focus-visible:ring-offset-2;
   }
 
   label[for] {

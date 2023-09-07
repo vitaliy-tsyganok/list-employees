@@ -1,3 +1,2 @@
-export { EmployeeCardList } from './ui/EmployeeCardList';
-export { useEmployeesQuery } from './api/employeeApi';
+export { useEmployeesByQuery } from './api/employeeApi';
 export * from './model/types';
