@@ -19,7 +19,11 @@ export const employeeApi = baseApi.injectEndpoints({
         return employeeAdapter.setAll(employeeAdapter.getInitialState(), response);
       },
       serializeQueryArgs: ({ queryArgs, endpointName }) => {
-        return `${endpointName}_status=${queryArgs.status?.join(',')}`;
+        const { status, q } = queryArgs;
+        return {
+          endpointName,
+          queryArgs: { status, q },
+        };
       },
       merge(currentCache, newEmployees) {
         return employeeAdapter.addMany(
@@ -30,43 +34,21 @@ export const employeeApi = baseApi.injectEndpoints({
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
           currentArg?._page !== previousArg?._page ||
-          currentArg?.status !== previousArg?.status
+          currentArg?.status !== previousArg?.status ||
+          currentArg?.q !== previousArg?.q
         );
       },
       onCacheEntryAdded: async ({ status }, { dispatch, cacheEntryRemoved }) => {
-        // console.log('Старт');
         await cacheEntryRemoved;
-        const resetFilterName = getFilterNameByEmployeeStatus(status)
-        dispatch(
-          filtersActions.resetPropsStatusFilter(resetFilterName),
-        );
-        // console.log('resetFilterName', resetFilterName);
-        // console.log('Конец');
+        const resetFilterName = getFilterNameByEmployeeStatus(status);
+        dispatch(filtersActions.resetPropsStatusFilter(resetFilterName));
       },
-      keepUnusedDataFor: 10,
-      // },
-      // providesTags: (result) =>
-      //   result
-      //     ? [
-      //         ...result.map(({id}) => ({ type: 'Employees' as const, id })),
-      //         { type: 'Employees', id: 'LIST' },
-      //       ]
-      //     : [{ type: 'Employees', id: 'LIST' }],
+      keepUnusedDataFor: 30,
     }),
-    // getEmployeeById: builder.query<Employee, Employee['id']>({
-    //   query: (id) => `/employees/${id}`,
-    //   // transformResponse: (response: Employee) => {
-    //   //   return employeeAdapter.addOne(employeeAdapter.getInitialState(), response);
-    //   // },
-    //   providesTags: (_result, _error, id) => [{ type: 'Employees', id }],
-    // }),
   }),
 });
 
-export const {
-  useGetEmployeesByQueryQuery: useEmployeesByQuery,
-  // useGetEmployeeByIdQuery: useEmployeeById,
-} = employeeApi;
+export const { useGetEmployeesByQueryQuery: useEmployeesByQuery } = employeeApi;
 
 // employeeApi.endpoints.getEmployeesByQuery.select()
 

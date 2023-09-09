@@ -3,7 +3,7 @@ declare global {
    * ⚠️ FSD
    *
    * Its hack way to export redux infering types from @/app
-   * and use it in @shared/model/hooks.ts
+   * and use it in @shared/libs/redux/hooks.ts
    */
 
   declare type RootState = import('../src/app/store').RootState;

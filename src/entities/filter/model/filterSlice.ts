@@ -1,5 +1,8 @@
 import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getInitialStatusFilterEntity, getInitialStatusFilters } from '../lib/getInitialStatusFilters';
+import {
+  getInitialStatusFilterEntity,
+  getInitialStatusFilters,
+} from '../lib/getInitialStatusFilters';
 import { getQueryParams } from '../lib/getQueryParams';
 import {
   FiltersByStatusNames,
@@ -37,14 +40,17 @@ const filtersSlice = createSlice({
     },
     resetPropsStatusFilter: (state, action: PayloadAction<FiltersByStatusNames>) => {
       const name = action.payload;
-      state.status.entities[name] = getInitialStatusFilterEntity(name)
+      state.status.entities[name] = getInitialStatusFilterEntity(name);
     },
     resetStatusFilters: (state) => {
       state.status = getInitialStatusFilters();
     },
 
     setSearchFilter: (state, action: PayloadAction<SearchFilter>) => {
-      state.search = action.payload;
+      const query = action.payload.query.toLowerCase().trim();
+      state.search = {
+        query,
+      };
     },
   },
 });
@@ -86,7 +92,7 @@ const selectEmployeesPage = createSelector(
 const selectQueryParams = createSelector(
   [selectEmployeesLimit, selectEmployeesPage, selectActiveFilterName, selectSearchQuery],
   (employeesLimit, employeesPage, activeFilterName, searchQuery) =>
-    getQueryParams({employeesLimit, employeesPage, activeFilterName, searchQuery}),
+    getQueryParams({ employeesLimit, employeesPage, activeFilterName, searchQuery }),
 );
 
 export const filtersSelectors = {
