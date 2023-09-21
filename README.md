@@ -1,5 +1,19 @@
 # Список сотрудников
 
+## Запуск
+
+Режим разработки:
+
+```
+docker compose --profile dev up -d
+```
+
+Режим продакшн:
+
+```
+docker compose --profile prod up -d --build
+```
+
 ## TO DO
 
 - [x] Сверстать макет на Tailwind CSS

@@ -1,0 +1,25 @@
+services:
+  app-dev:
+    build:
+      context: ./
+      target: development
+    ports:
+      - 80:3000
+    volumes:
+      - ./src:/app/src
+    profiles: ["dev"]
+  app-prod:
+    build: 
+      context: ./
+      target: production
+    ports:
+      - 80:80
+    profiles: ["prod"]
+  json-server:
+    image: clue/json-server
+    restart: always
+    volumes:
+      - ./json-server:/data
+    ports:
+      - 3004:80
+    profiles: ["dev","prod"]
