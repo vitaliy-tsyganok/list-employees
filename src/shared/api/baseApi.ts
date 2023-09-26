@@ -4,7 +4,7 @@ import queryString from 'query-string';
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3004',
+    baseUrl: import.meta.env.VITE_API_BASE_URL,
     paramsSerializer: queryString.stringify,
   }),
   tagTypes: ['Employees'],

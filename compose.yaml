@@ -7,14 +7,14 @@ services:
       - 80:3000
     volumes:
       - ./src:/app/src
-    profiles: ["dev"]
+    profiles: ['dev']
   app-prod:
-    build: 
+    build:
       context: ./
       target: production
     ports:
       - 80:80
-    profiles: ["prod"]
+    profiles: ['prod']
   json-server:
     image: clue/json-server
     restart: always
@@ -22,4 +22,4 @@ services:
       - ./json-server:/data
     ports:
       - 3004:80
-    profiles: ["dev","prod"]
+    profiles: ['dev', 'prod']
